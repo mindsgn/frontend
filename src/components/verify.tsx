@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Container,
@@ -9,16 +9,16 @@ import {
   Heading,
   Input,
   VStack,
-  Text
-} from '@chakra-ui/react';
-import { AuthInterfce, useAuth } from 'store/auth';
-import { Button } from './button';
+  Text,
+} from "@chakra-ui/react";
+import { AuthInterfce, useAuth } from "store/auth";
+import { Button } from "./button";
 
 const Verify: React.FC = () => {
   const state = useAuth();
   const { verify, user } = state as AuthInterfce;
   const { email } = user;
-  const [code, setCode] = useState<string>('');
+  const [code, setCode] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,9 +27,9 @@ const Verify: React.FC = () => {
   };
 
   return (
-    <Container maxW="lg" py={12} background={'white'} borderRadius={10}>
+    <Container maxW="lg" py={12} background={"white"} borderRadius={10}>
       <VStack spacing={8} align="stretch">
-        <Heading as="h1" textAlign="center" fontFamily={'heavy'}>
+        <Heading as="h1" textAlign="center" fontFamily={"heavy"}>
           VERIFY
         </Heading>
         <Box as="form" onSubmit={handleSubmit}>
@@ -40,13 +40,13 @@ const Verify: React.FC = () => {
                 id="text"
                 type="text"
                 value={code}
-                onChange={e => setCode(e.target.value)}
+                onChange={(e) => setCode(e.target.value)}
                 placeholder="Enter your verification code"
               />
             </FormControl>
 
             <Button
-              title={'VERIFY'}
+              title={"VERIFY"}
               background="black"
               width="full"
               onClick={handleSubmit}

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 import {
   Box,
   Heading,
@@ -9,12 +9,12 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Text
-} from '@chakra-ui/react';
-import { Button } from './button';
-import QRCode from 'react-qr-code';
-import { useApp } from 'store/app';
-import {APIProvider, Map} from '@vis.gl/react-google-maps';
+  Text,
+} from "@chakra-ui/react";
+import { Button } from "./button";
+import QRCode from "react-qr-code";
+import { useApp } from "store/app";
+import { APIProvider, Map } from "@vis.gl/react-google-maps";
 
 export type AssetDetailsProps = {
   isOpen?: boolean;
@@ -31,11 +31,11 @@ function AssetDetails({
   isOpen,
   setAssetModal,
   id,
-  name = 'Chair',
+  name = "Chair",
   description,
   image,
   value,
-  currency
+  currency,
 }: AssetDetailsProps) {
   const state = useApp();
   //@ts-expect-error
@@ -43,38 +43,38 @@ function AssetDetails({
 
   return (
     <Box
-      display={isOpen ? 'flex' : 'none'}
-      flexDir={'row'}
-      position={'fixed'}
-      width={'100vw'}
-      height={'100vh'}
-      flexDirection={'row'}
-      justifyContent={'flex-end'}
-      top={'0%'}
-      left={'0%'}
+      display={isOpen ? "flex" : "none"}
+      flexDir={"row"}
+      position={"fixed"}
+      width={"100vw"}
+      height={"100vh"}
+      flexDirection={"row"}
+      justifyContent={"flex-end"}
+      top={"0%"}
+      left={"0%"}
     >
       <Box
-        width={[0, 0, '100vw', '100vw']}
-        background={'rgba(0,0,0, 0.2)'}
-        height={'100vh'}
+        width={[0, 0, "100vw", "100vw"]}
+        background={"rgba(0,0,0, 0.2)"}
+        height={"100vh"}
         onClick={() => setAssetModal(false)}
       />
       <Box
-        display={'flex'}
-        width={['100vw', '100vw', '500px', '500px']}
-        height={'100vh'}
+        display={"flex"}
+        width={["100vw", "100vw", "500px", "500px"]}
+        height={"100vh"}
         background="white"
         padding={4}
-        flexDirection={'column'}
+        flexDirection={"column"}
       >
-        <Heading fontFamily={'heavy'}>{`${name}`.toLocaleUpperCase()}</Heading>
+        <Heading fontFamily={"heavy"}>{`${name}`.toLocaleUpperCase()}</Heading>
         <Box
           height={250}
-          width={'100%'}
+          width={"100%"}
           background={`url('${process.env.NEXT_PUBLIC_API_URL}/uploads/${image}')`}
           borderRadius={10}
-          backgroundPosition={'center'}
-          backgroundSize={'cover'}
+          backgroundPosition={"center"}
+          backgroundSize={"cover"}
           padding={10}
           marginRight={4}
           marginY={5}
@@ -85,8 +85,8 @@ function AssetDetails({
               <h2>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left">
-                    <Heading fontFamily={'bold'} fontSize={21}>
-                      {'DETAILS'}
+                    <Heading fontFamily={"bold"} fontSize={21}>
+                      {"DETAILS"}
                     </Heading>
                   </Box>
                   <AccordionIcon />
@@ -105,8 +105,8 @@ function AssetDetails({
               <h2>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left">
-                    <Heading fontFamily={'bold'} fontSize={21}>
-                      {'LOCATION'}
+                    <Heading fontFamily={"bold"} fontSize={21}>
+                      {"LOCATION"}
                     </Heading>
                   </Box>
                   <AccordionIcon />
@@ -115,13 +115,13 @@ function AssetDetails({
               <AccordionPanel pb={4}>
                 <APIProvider apiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS}`}>
                   <Map
-                  style={{ width: '100%', height: '200px' }}
-                  defaultCenter={{lat: 22.54992, lng: 0}}
-                  defaultZoom={3}
-                  gestureHandling={'greedy'}
-                  disableDefaultUI={true}
-                />
-              </APIProvider>
+                    style={{ width: "100%", height: "200px" }}
+                    defaultCenter={{ lat: 22.54992, lng: 0 }}
+                    defaultZoom={3}
+                    gestureHandling={"greedy"}
+                    disableDefaultUI={true}
+                  />
+                </APIProvider>
               </AccordionPanel>
             </AccordionItem>
 
@@ -129,8 +129,8 @@ function AssetDetails({
               <h2>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left">
-                    <Heading fontFamily={'bold'} fontSize={21}>
-                      {'QR CODE '}
+                    <Heading fontFamily={"bold"} fontSize={21}>
+                      {"QR CODE "}
                     </Heading>
                   </Box>
                   <AccordionIcon />
@@ -139,7 +139,7 @@ function AssetDetails({
               <AccordionPanel pb={4}>
                 <QRCode
                   size={256}
-                  style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
+                  style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                   value={`${process.env.NEXT_PUBLIC_API_URL}/update/${id}`}
                   viewBox={`0 0 256 256`}
                 />

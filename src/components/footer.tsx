@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import React from "react";
+import { Box, Text } from "@chakra-ui/react";
 
 export type FooterProp = {};
 
@@ -10,11 +10,11 @@ function Footer({}: FooterProp) {
 
   return (
     <Box
-      display={'flex'}
-      flexDir={'row'}
-      background={'black'}
-      alignItems={'center'}
-      justifyContent={'space-evenly'}
+      display={"flex"}
+      flexDir={"row"}
+      background={"black"}
+      alignItems={"center"}
+      justifyContent={"space-evenly"}
       padding={4}
     >
       <Text
@@ -26,7 +26,7 @@ function Footer({}: FooterProp) {
       >
         &copy; {currentYear} ULUNTU (PTY) LTD
       </Text>
-      <Box flexDir={'row'} display={['none', 'flex', 'flex', 'flex']}>
+      <Box flexDir={"row"} display={["none", "flex", "flex", "flex"]}>
         <Text
           marginY={4}
           fontFamily="heavy"

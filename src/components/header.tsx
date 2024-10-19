@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Box, Heading } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
+import React from "react";
+import { Box, Heading } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 export type HeaderProps = {};
 
@@ -19,7 +19,7 @@ function Header({}: HeaderProps) {
       padding={2}
       zIndex={100}
     >
-      <Box display="flex" flexDirection={'row'} alignItems={'center'}>
+      <Box display="flex" flexDirection={"row"} alignItems={"center"}>
         <Box
           width={10}
           height={10}
@@ -32,7 +32,7 @@ function Header({}: HeaderProps) {
           fontFamily="heavy"
           fontSize={20}
           color="white"
-          cursor={'pointer'}
+          cursor={"pointer"}
         >
           ULUNTU
         </Heading>

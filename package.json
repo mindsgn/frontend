@@ -61,6 +61,7 @@
     "react-smooth-counter": "^2.0.0",
     "resend": "^3.4.0",
     "server-only": "^0.0.1",
+    "tigerbeetle-node": "^0.16.9",
     "typescript": "5.1.6",
     "uuid": "^9.0.1",
     "yup": "^1.4.0",

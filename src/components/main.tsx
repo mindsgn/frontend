@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Box, Heading } from '@chakra-ui/react';
-import { Hero } from './hero';
-import { Footer } from './footer';
+import React from "react";
+import { Box, Heading } from "@chakra-ui/react";
+import { Hero } from "./hero";
+import { Footer } from "./footer";
 
 export type MainProp = {};
 

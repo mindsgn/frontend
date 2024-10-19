@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Box, Heading } from '@chakra-ui/react';
+import React from "react";
+import { Box, Heading } from "@chakra-ui/react";
 
 export type ButtonProps = {
   onClick: (any?: any) => void;
@@ -18,27 +18,27 @@ function Button({
   background,
   color,
   width = 200,
-  height = 50
+  height = 50,
 }: ButtonProps) {
   return (
     <Box
-      display={'flex'}
+      display={"flex"}
       background={background}
       padding={4}
       borderRadius={10}
       cursor="pointer"
       onClick={onClick}
-      alignItems={'center'}
-      justifyContent={'center'}
+      alignItems={"center"}
+      justifyContent={"center"}
       width={width}
       height={height}
     >
       <Heading
-        textAlign={'center'}
+        textAlign={"center"}
         fontFamily="heavy"
         fontSize={20}
         color={color}
-        cursor={'pointer'}
+        cursor={"pointer"}
       >
         {title}
       </Heading>

@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 export interface User {
   email: null | string;
@@ -15,64 +15,59 @@ export interface AuthInterfce {
   logoutL: () => void;
 }
 
-const useAuth = create(set => ({
+const useAuth = create((set) => ({
   auth: null,
   user: {
-    email: null
+    email: null,
   },
   token: null,
   step: 0,
   getAuth: async () => {
     try {
-      /*
-      const token = sessionStorage.getItem('token');
+      const token = sessionStorage.getItem("token");
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {
-        
+        set((state: AuthInterfce) => ({
+          step: state.step + 1,
+          auth: true,
+        }));
       }
-      */
-
-      set((state: AuthInterfce) => ({
-        step: state.step + 1,
-        auth: true
-      }));
     } catch (error) {
       console.log(error);
     }
   },
   login: async (email: string) => {
     try {
-      /*
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: email.toLowerCase()
-          })
-        }
+            email: email.toLowerCase(),
+          }),
+        },
       );
 
       if (!response.ok) {
         console.log(response);
-        throw new Error('signin failed');
+        throw new Error("signin failed");
       }
-      */
 
       set((state: AuthInterfce) => ({
         step: state.step + 1,
-        user: { ...state.user, email }
+        user: { ...state.user, email },
       }));
+
       return true;
     } catch (error) {
       console.log(error);
@@ -81,36 +76,32 @@ const useAuth = create(set => ({
   },
   verify: async (email: string, code: string) => {
     try {
-      /*
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/verify`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             email,
-            code
-          })
-        }
+            code,
+          }),
+        },
       );
 
       if (!response.ok) {
-        throw new Error('verfification failed');
+        throw new Error("verfification failed");
       }
 
       const data = await response.json();
       const { token } = data;
-      sessionStorage.setItem('token', token);
-      */
+      sessionStorage.setItem("token", token);
 
-      const token: string = "DEV";
-      // set((state: AuthInterfce) => ({
-      //  auth: true,
-      //  token
-     // }));
-
+      set((state: AuthInterfce) => ({
+        auth: true,
+        token,
+      }));
     } catch (error) {
       console.log(error);
     }
@@ -119,14 +110,14 @@ const useAuth = create(set => ({
     try {
       sessionStorage.clear();
       set((state: AuthInterfce) => ({
-        auth: false
+        auth: false,
       }));
     } catch (error) {
       return null;
     } finally {
       return null;
     }
-  }
+  },
 }));
 
 //@ts-expect-error

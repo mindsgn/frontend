@@ -4862,6 +4862,11 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
 
+tigerbeetle-node@^0.16.9:
+  version "0.16.9"
+  resolved "https://registry.yarnpkg.com/tigerbeetle-node/-/tigerbeetle-node-0.16.9.tgz#b5fa0df731ddca0ee2e5a2642f5a35189b6702d1"
+  integrity sha512-cg+jqcWxkRBcAaPiCMucQzauQrx1cqrwjDRcK8owWOSw0KSpfnzGRObuDmqkx9OZ50wAgQlZ9S6RB5x5Dw9ssg==
+
 tiny-case@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-case/-/tiny-case-1.0.3.tgz#d980d66bc72b5d5a9ca86fb7c9ffdb9c898ddd03"

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from 'store';
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "store";
 // Dynamically import the component that uses document
 export default function Page() {
   const router = useRouter();
@@ -12,10 +12,9 @@ export default function Page() {
 
   useEffect(() => {
     if (!auth) {
-      router.push('/');
+      router.push("/");
     }
   }, [auth, router]);
-  return (
-      <></>
-  );
+
+  return <></>;
 }

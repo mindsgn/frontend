@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import {
   Box,
   Container,
@@ -10,15 +10,15 @@ import {
   Heading,
   Input,
   VStack,
-  Text
-} from '@chakra-ui/react';
-import { AuthInterfce, useAuth } from 'store/auth';
-import { Button } from './button';
+  Text,
+} from "@chakra-ui/react";
+import { AuthInterfce, useAuth } from "store/auth";
+import { Button } from "./button";
 
 const Login: React.FC = () => {
   const state = useAuth();
   const { login } = state as AuthInterfce;
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     try {
@@ -30,20 +30,22 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Container maxW="lg" py={12} background={'white'} borderRadius={10}>
+    <Container maxW="lg" py={12} background={"white"} borderRadius={10}>
       <VStack spacing={8} align="stretch">
-        <Heading as="h1" textAlign="center" fontFamily={'heavy'}>
+        <Heading as="h1" textAlign="center" fontFamily={"heavy"}>
           Login
         </Heading>
         <Box as="form" onSubmit={handleSubmit}>
           <VStack spacing={4}>
             <FormControl isRequired>
-              <FormLabel htmlFor="email" fontFamily={'bold'}>Email</FormLabel>
+              <FormLabel htmlFor="email" fontFamily={"bold"}>
+                Email
+              </FormLabel>
               <Input
                 id="email"
                 type="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
               />
             </FormControl>
@@ -51,7 +53,7 @@ const Login: React.FC = () => {
               background="black"
               width="full"
               color="white"
-              title={'LOG IN'}
+              title={"LOG IN"}
               onClick={handleSubmit}
             />
           </VStack>

@@ -1,10 +1,10 @@
 const features = [
   {
-    title: '',
-    description: ''
+    title: "",
+    description: "",
   },
   {
-    title: '',
-    description: ''
-  }
+    title: "",
+    description: "",
+  },
 ];

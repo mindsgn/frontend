@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { ChakraProvider } from '@chakra-ui/react';
-import { AnimatePresence } from 'framer-motion';
+import { ChakraProvider } from "@chakra-ui/react";
+import { AnimatePresence } from "framer-motion";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -9,7 +9,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <AnimatePresence
         initial={false}
         onExitComplete={() => {
-          if (typeof window !== 'undefined') {
+          if (typeof window !== "undefined") {
             window.scrollTo(0, 0);
           }
         }}

@@ -1,19 +1,20 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 export interface AppInterfce {
-  transactions: any[],
-  pools: any[],
+  transactions: any[];
+  pools: any[];
   getTransactions: () => void;
+  getBalance: () => void;
   getPools: () => void;
 }
 
-const useApp = create(set => ({
+const useApp = create((set) => ({
   transactions: [],
   pools: [],
-  total: 0.00,
+  total: 0.0,
   getTransactions: async () => {
     try {
-      const token: string | null = sessionStorage.getItem('token');
+      const token: string | null = sessionStorage.getItem("token");
 
       if (!token) return null;
 
@@ -21,21 +22,56 @@ const useApp = create(set => ({
       const page = 0;
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/assets?limit=${limit}&page=${page}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/transactions?limit=${limit}&page=${page}`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          }
-        }
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
+
+      const data = await response.json();
+
+      const { assets, totalValue } = data;
+
+      set((state: any) => ({
+        assets: assets,
+        total: totalValue,
+      }));
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  },
+  getBalance: async () => {
+    try {
+      const token: string | null = sessionStorage.getItem("token");
+
+      if (!token) return null;
+
+      const limit = 0;
+      const page = 0;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/balance?limit=${limit}&page=${page}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
       const data = await response.json();
 
       const { assets, totalValue } = data;
       set((state: any) => ({
         assets: assets,
-        total: totalValue
+        total: totalValue,
       }));
       return null;
     } catch (error) {
@@ -45,7 +81,7 @@ const useApp = create(set => ({
   },
   getPools: async () => {
     try {
-      const token: string | null = sessionStorage.getItem('token');
+      const token: string | null = sessionStorage.getItem("token");
 
       if (!token) return null;
 
@@ -55,19 +91,19 @@ const useApp = create(set => ({
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/assets?limit=${limit}&page=${page}`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          }
-        }
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
       const data = await response.json();
 
       const { assets, totalValue } = data;
       set((state: any) => ({
         assets: assets,
-        total: totalValue
+        total: totalValue,
       }));
       return null;
     } catch (error) {
