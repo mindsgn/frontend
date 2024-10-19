@@ -8,7 +8,7 @@ const TransactionCard: React.FC = ({
   title,
   amount,
   type,
-  status = "Pending",
+  status = "PENDING",
 }: {
   title: string;
   amount: string;
@@ -31,8 +31,8 @@ const TransactionCard: React.FC = ({
         <Text fontSize={21} color="white" fontFamily={"heavy"}>
           {title}
         </Text>
-        <Text fontSize={12} color="#HEHEHE" fontFamily={"heavy"}>
-          {title}
+        <Text fontSize={18} color="white" fontFamily={"heavy"}>
+          {status}
         </Text>
       </Box>
 
@@ -41,6 +41,8 @@ const TransactionCard: React.FC = ({
         fontFamily={"heavy"}
         color={type == "deposit" ? "green" : "red"}
       >
+        {type == "deposit"? "+ " : "- "}
+        {"R"}
         {amount}
       </Text>
     </Box>

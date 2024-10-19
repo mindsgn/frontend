@@ -29,6 +29,7 @@ function MainContainer({}: MainContainerProp) {
   //@ts-expect-error
   const { logout, auth } = authState;
 
+
   useEffect(() => {
     if (!auth) {
       router.push("/login");
@@ -37,7 +38,6 @@ function MainContainer({}: MainContainerProp) {
 
   useEffect(() => {
     getTransactions();
-    getTransactions;
   }, []);
 
   return (
@@ -76,7 +76,7 @@ function MainContainer({}: MainContainerProp) {
           </Text>
         </Box>
         <Box display={"flex"} width={["100%", "100%", 750, 750]}>
-          {pools.length === 0 ? (
+          {pools.length == 0 ? (
             <Box
               display="flex"
               flexDir={["column"]}
@@ -112,18 +112,33 @@ function MainContainer({}: MainContainerProp) {
         </Box>
       </Box>
       <Box>
-        <Box marginY={4}>
+        <Box 
+          marginY={4}
+          display={"flex"} 
+          flexDir={'row'}
+          justifyContent={'space-between'}
+          alignItems={'center'}
+          width='100%'>
           <Text fontSize={40} fontFamily={"heavy"} color="white">
             Transactions
+          </Text>
+
+          <Text 
+            cursor="pointer"
+            fontSize={20} 
+            fontFamily={"heavy"} 
+            color="white">
+            View All
           </Text>
         </Box>
 
         <Box>
-          {transactions.lenght === 0 ? (
+          {transactions.length == 0 ? (
             <Box
               display="flex"
               flexDir={["column"]}
-              justifyContent={"flex-end"}
+              justifyContent={"center"}
+              alignItems={"center"}
               cursor="pointer"
               padding={2}
               borderRadius={10}
@@ -134,7 +149,7 @@ function MainContainer({}: MainContainerProp) {
                 router.push("/dashboard/stokvel");
               }}
             >
-              <Text fontSize={28} fontFamily={"heavy"} color="red">
+              <Text fontSize={28} fontFamily={"heavy"} color="white">
                 No Transactions have been made
               </Text>
             </Box>

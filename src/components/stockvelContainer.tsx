@@ -25,19 +25,10 @@ function MainContainer({}: MainContainerProp) {
   const authState = useAuth();
   const state = useApp();
   //@ts-expect-error
-  const { getTransactions, transactions, total, pools } = state;
-  //@ts-expect-error
-  const { logout, auth } = authState;
+  const { getStockvel, stokvelBalance } = state;
 
   useEffect(() => {
-    if (!auth) {
-      router.push("/login");
-    }
-  }, [auth, router]);
-
-  useEffect(() => {
-    getTransactions();
-    getTransactions;
+    getStockvel(0);
   }, []);
 
   return (
@@ -58,16 +49,44 @@ function MainContainer({}: MainContainerProp) {
         <Box
           padding={2}
           borderRadius={10}
-          minW={["100%", "100%", 200, 200]}
           background="#1E1E1E"
+          minW={["100%", "100%", 400, 400]}
+          minH={200}
         >
           <Text fontSize={52} fontFamily={"heavy"} color="white">
-            R {total}
+            R {stokvelBalance}
           </Text>
           <Text marginTop={-5} fontSize={20} fontFamily={"bold"} color={"#ddd"}>
             Total Value
           </Text>
         </Box>
+      </Box>
+
+      <Box>
+        <Box marginY={4}>
+          <Text fontSize={40} fontFamily={"heavy"} color="white">
+            Members
+          </Text>
+        </Box>
+        <Box
+            display="flex"
+            flexDir={["column"]}
+            alignItems={"center"}
+            justifyContent={"center"}
+            cursor="pointer"
+            padding={2}
+            borderRadius={10}
+            minW={["100%", "100%", 400, 400]}
+            background="#1E1E1E"
+            minH={200}
+            onClick={() => {
+              router.push("/dashboard/stokvel");
+            }}
+          >
+            <Text fontSize={28} fontFamily={"heavy"} color="white">
+              No Members have joined
+            </Text>
+          </Box>
       </Box>
 
       <Box>

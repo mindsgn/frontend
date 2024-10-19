@@ -3,15 +3,19 @@ import { create } from "zustand";
 export interface AppInterfce {
   transactions: any[];
   pools: any[];
+  stokvelBalance: number,
+  stokvelTransactions: [], 
   getTransactions: () => void;
   getBalance: () => void;
   getPools: () => void;
+  getStockvel: (id: number) => void;
 }
 
 const useApp = create((set) => ({
   transactions: [],
   pools: [],
   total: 0.0,
+  stokvelBalance: 0,
   getTransactions: async () => {
     try {
       const token: string | null = sessionStorage.getItem("token");
@@ -33,12 +37,45 @@ const useApp = create((set) => ({
       );
 
       const data = await response.json();
-
-      const { assets, totalValue } = data;
+      const {balance, transactions} = data;
 
       set((state: any) => ({
-        assets: assets,
-        total: totalValue,
+        total: balance,
+        transactions,
+      }));
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  },
+  getStockvel: async (id:  number) => {
+    try {
+      const token: string | null = sessionStorage.getItem("token");
+
+      if (!token) return null;
+
+      const limit = 0;
+      const page = 0;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/stokvel/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const data = await response.json();
+      console.log(data)
+      // const {balance, transactions} = data;
+
+      set((state: any) => ({
+        stokvelBalance: 0,
+        stokvelTransactions: [],
       }));
       return null;
     } catch (error) {
