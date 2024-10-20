@@ -16,3 +16,6 @@
 ```
     yarn dev
 ```
+
+## Note
+Verification Code is always: 111111
