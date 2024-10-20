@@ -26,5 +26,7 @@ export default function Page() {
       router.push("/");
     }
   }, [auth, router]);
+  
+  //@ts-expect-error
   return <BrowserOnlyComponent id={id} members={[]} transaction={[]}/>;
 }
