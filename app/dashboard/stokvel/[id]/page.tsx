@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "store";
 import dynamic from "next/dynamic";
 
 const BrowserOnlyComponent = dynamic(
-  () => import("../../../src/components/stockvelContainer"),
+  () => import("../../../../src/components/stockvelContainer"),
   {
     ssr: false,
   },
@@ -16,6 +16,8 @@ const BrowserOnlyComponent = dynamic(
 export default function Page() {
   const router = useRouter();
   const state = useAuth();
+  const params = useParams();
+  const id = params.id as string;
   //@ts-expect-error
   const { auth, step } = state;
 
@@ -24,5 +26,5 @@ export default function Page() {
       router.push("/");
     }
   }, [auth, router]);
-  return <BrowserOnlyComponent />;
+  return <BrowserOnlyComponent id={id} members={[]} transaction={[]}/>;
 }

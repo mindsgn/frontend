@@ -25,9 +25,9 @@ function MainContainer({}: MainContainerProp) {
   const authState = useAuth();
   const state = useApp();
   //@ts-expect-error
-  const { getTransactions, transactions, total, pools } = state;
+  const { getTransactions, transactions, total, pools, getAllPools } = state;
   //@ts-expect-error
-  const { logout, auth } = authState;
+  const { auth } = authState;
 
 
   useEffect(() => {
@@ -38,6 +38,7 @@ function MainContainer({}: MainContainerProp) {
 
   useEffect(() => {
     getTransactions();
+    getAllPools();
   }, []);
 
   return (
@@ -64,7 +65,6 @@ function MainContainer({}: MainContainerProp) {
           </Text>
           {
             //@ts-expect-error
-
             <BarStack width={500} height={400} />
           }
         </Box>
@@ -78,34 +78,35 @@ function MainContainer({}: MainContainerProp) {
         <Box display={"flex"} width={["100%", "100%", 750, 750]}>
           {pools.length == 0 ? (
             <Box
-              display="flex"
-              flexDir={["column"]}
-              justifyContent={"flex-end"}
-              cursor="pointer"
-              padding={2}
-              borderRadius={10}
-              minW={["100%", "100%", 400, 400]}
-              background="#1E1E1E"
-              minH={200}
               onClick={() => {
                 router.push("/dashboard/stokvel");
               }}
             >
               <Text fontSize={28} fontFamily={"heavy"} color="red">
-                Rotational Stokvel
+                pools
               </Text>
             </Box>
           ) : (
             pools.map((item: any) => {
               return (
                 <Box
-                  cursor={"pointer"}
-                  width={200}
-                  height={60}
-                  background="#1E1E1E"
+                  display="flex"
+                  flexDir={["column"]}
+                  justifyContent={"flex-end"}
+                  cursor="pointer"
+                  padding={2}
                   borderRadius={10}
-                  marginRight={4}
-                />
+                  minW={["100%", "100%", 400, 400]}
+                  background="#1E1E1E"
+                  minH={200}
+                  onClick={() => {
+                    router.push(`/dashboard/stokvel/${item._id}`);
+                  }}
+                >
+                  <Text fontSize={28} fontFamily={"heavy"} color="red">
+                    {item.name}
+                  </Text>
+                </Box>
               );
             })
           )}

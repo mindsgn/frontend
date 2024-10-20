@@ -11,9 +11,17 @@ import { useRouter } from "next/navigation";
 import TransactionCard from "./transaction";
 import BarStack from "@/components/barStack";
 
-export type MainContainerProp = {};
 
-function MainContainer({}: MainContainerProp) {
+export type MainContainerProp = {
+  id: string,
+  members: any[],
+  transaction: any[],
+  isMember: boolean
+};
+
+function MainContainer({
+  id 
+}: MainContainerProp) {
   const router = useRouter();
   const [assetModal, setAssetModal] = useState<boolean>(false);
   const [current, setCurrent] = useState<any>({
@@ -25,10 +33,10 @@ function MainContainer({}: MainContainerProp) {
   const authState = useAuth();
   const state = useApp();
   //@ts-expect-error
-  const { getStockvel, stokvelBalance } = state;
+  const { getStockvel, stokvelBalance, joinPool } = state;
 
   useEffect(() => {
-    getStockvel(0);
+    getStockvel(id);
   }, []);
 
   return (
@@ -47,18 +55,29 @@ function MainContainer({}: MainContainerProp) {
         cursor="pointer"
       >
         <Box
+          display={'flex'}
+          flexDir={'column'}
+          justifyContent={'space-between'}
           padding={2}
+          paddingY={4}
           borderRadius={10}
           background="#1E1E1E"
           minW={["100%", "100%", 400, 400]}
+          height={250}
           minH={200}
         >
-          <Text fontSize={52} fontFamily={"heavy"} color="white">
-            R {stokvelBalance}
-          </Text>
-          <Text marginTop={-5} fontSize={20} fontFamily={"bold"} color={"#ddd"}>
-            Total Value
-          </Text>
+          <Box>
+            <Text fontSize={52} fontFamily={"heavy"} color="white">
+              R {stokvelBalance}
+            </Text>
+            <Text marginTop={-5} fontSize={20} fontFamily={"bold"} color={"#ddd"}>
+              Total Value
+            </Text>
+          </Box>
+
+          <Button onClick={() => {
+            joinPool(id)
+          }} title="JOIN" color='white' background='green'/>
         </Box>
       </Box>
 

@@ -8,7 +8,9 @@ export interface AppInterfce {
   getTransactions: () => void;
   getBalance: () => void;
   getPools: () => void;
+  getAllPools: () => void;
   getStockvel: (id: number) => void;
+  joinPool: (id: number) => void;
 }
 
 const useApp = create((set) => ({
@@ -142,6 +144,66 @@ const useApp = create((set) => ({
         assets: assets,
         total: totalValue,
       }));
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  },
+  getAllPools: async () => {
+    try {
+      const token: string | null = sessionStorage.getItem("token");
+
+      if (!token) return null;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/stokvel/all`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const data = await response.json();
+      const { pools } = data
+      
+      set((state: any) => ({
+        pools: pools
+      }));
+
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  },
+  joinPool: async (id: string) => {
+    try {
+      const token: string | null = sessionStorage.getItem("token");
+
+      if (!token) return null;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/stokvel/join?id=${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const data = await response.json();
+      const { pools } = data
+      
+      set((state: any) => ({
+        pools: pools
+      }));
+
       return null;
     } catch (error) {
       console.log(error);
